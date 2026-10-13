@@ -1,0 +1,30 @@
+schema: '2.0'
+stages:
+  ingest:
+    cmd: python -m finsent.data.ingest
+    deps:
+    - path: src/finsent/data/ingest.py
+      hash: md5
+      md5: fd0475191984a8b3c77e5a0a4f19dab5
+      size: 1143
+    outs:
+    - path: data/raw/tfns.csv
+      hash: md5
+      md5: 1707a75328e1102349274cf10f8ec8c5
+      size: 1247249
+  clean:
+    cmd: python -m finsent.data.clean
+    deps:
+    - path: data/raw/tfns.csv
+      hash: md5
+      md5: 1707a75328e1102349274cf10f8ec8c5
+      size: 1247249
+    - path: src/finsent/data/clean.py
+      hash: md5
+      md5: 477e82324bd4302d9d89a3c4b53b4509
+      size: 1480
+    outs:
+    - path: data/processed/tfns_clean.csv
+      hash: md5
+      md5: ab00eeccdd1cb710c674a4a5a95c1f87
+      size: 1080452

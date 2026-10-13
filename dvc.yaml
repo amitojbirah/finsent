@@ -1,0 +1,15 @@
+stages:
+  ingest:
+    cmd: python -m finsent.data.ingest
+    deps:
+      - src/finsent/data/ingest.py
+    outs:
+      - data/raw/tfns.csv
+
+  clean:
+    cmd: python -m finsent.data.clean
+    deps:
+      - data/raw/tfns.csv
+      - src/finsent/data/clean.py
+    outs:
+      - data/processed/tfns_clean.csv

@@ -9,7 +9,7 @@ requires-python = ">=3.10"
 dependencies = ["pandas", "datasets"]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff"]
+dev = ["pytest", "ruff", "dvc"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

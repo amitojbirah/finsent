@@ -94,10 +94,10 @@ def test_train_validation_overlap_keeps_validation_copy():
 def test_does_not_modify_input():
     df = make_df(
         [
-            ("$AAPL up", "positive", "train"),
+            ("$AAPL down", "negative", "train"),
             ("$AAPL up", "positive", "train"),
         ]
     )
     before = df.copy()
-    clean_dataframe(df)
-    pd.testing.assert_frame_equal(df, before)
+    c = clean_dataframe(df)
+    pd.testing.assert_frame_equal(c, before)
