@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "finsent"
 version = "0.1.0"
 requires-python = ">=3.10"
-dependencies = ["pandas", "datasets"]
+dependencies = ["pandas", "datasets","transformers"]
 
 [project.optional-dependencies]
-dev = ["pytest", "ruff", "dvc"]
+dev = ["pytest", "ruff", "dvc","matplotlib","ipykernel"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
