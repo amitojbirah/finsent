@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "finsent"
 version = "0.1.0"
 requires-python = ">=3.10"
-dependencies = ["pandas", "datasets","transformers","sqlalchemy", "psycopg[binary]", "python-dotenv"]
+dependencies = ["pandas", "datasets","transformers","sqlalchemy", "psycopg[binary]", "python-dotenv","scikit-learn","mlflow"]
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff", "dvc","matplotlib","ipykernel"]
