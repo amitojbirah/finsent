@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 from sklearn.metrics import (
     ConfusionMatrixDisplay,
@@ -11,9 +10,7 @@ LABELS = ["negative", "neutral", "positive"]
 
 
 def evaluate(y_true, y_pred):
-    per_class = f1_score(
-        y_true, y_pred, labels=LABELS, average=None, zero_division=0
-    )
+    per_class = f1_score(y_true, y_pred, labels=LABELS, average=None, zero_division=0)
     metrics = {
         "accuracy": float(accuracy_score(y_true, y_pred)),
         "macro_f1": float(
