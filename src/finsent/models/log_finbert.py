@@ -1,4 +1,5 @@
 """Log the FinBERT runs (trained on Colab) into the local MLflow server."""
+
 import json
 
 import matplotlib.pyplot as plt
@@ -73,11 +74,13 @@ def log_finetuned():
         seen_epochs = set()
         for entry in log_history:
             if "eval_macro_f1" in entry:
-                epoch = int(round(entry["epoch"]))
+                epoch = round(entry["epoch"])
                 if epoch in seen_epochs:
                     continue
                 seen_epochs.add(epoch)
-                mlflow.log_metric("epoch_val_macro_f1", entry["eval_macro_f1"], step=epoch)
+                mlflow.log_metric(
+                    "epoch_val_macro_f1", entry["eval_macro_f1"], step=epoch
+                )
                 mlflow.log_metric("epoch_val_loss", entry["eval_loss"], step=epoch)
             elif "loss" in entry:
                 mlflow.log_metric("train_loss", entry["loss"], step=entry["step"])
@@ -95,7 +98,10 @@ def main():
     mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 
-    for name, log_fn in [("finbert_zeroshot", log_zeroshot), ("finbert_ft", log_finetuned)]:
+    for name, log_fn in [
+        ("finbert_zeroshot", log_zeroshot),
+        ("finbert_ft", log_finetuned),
+    ]:
         metrics, run_id = log_fn()
         print(f"{name:<18} val_macro_f1 = {metrics['macro_f1']:.4f}  (run {run_id})")
 

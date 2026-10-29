@@ -1,4 +1,5 @@
 """Pick the best run on val, score it on test once, and mark it as selected."""
+
 import mlflow
 import pandas as pd
 from mlflow import MlflowClient
@@ -10,6 +11,18 @@ from finsent.models.train_baseline import EXPERIMENT_NAME
 # Runs whose test predictions are saved as a CSV (scored here, not at training time)
 TEST_PREDS = {
     "finbert_ft": PROJECT_ROOT / "artifacts" / "finbert_ft" / "test_preds.csv",
+    "finbert_full_local": PROJECT_ROOT
+    / "artifacts"
+    / "runs"
+    / "full"
+    / "final"
+    / "test_preds.csv",
+    "finbert_lora_local": PROJECT_ROOT
+    / "artifacts"
+    / "runs"
+    / "lora"
+    / "final"
+    / "test_preds.csv",
 }
 
 

@@ -1,10 +1,12 @@
-from sqlalchemy import text
 import pandas as pd
+from sqlalchemy import text
+
 
 def count_tweets(engine):
     with engine.connect() as conn:
-        va=conn.execute(text("SELECT count(*) FROM tweets "))
+        va = conn.execute(text("SELECT count(*) FROM tweets "))
         return va.scalar_one()
+
 
 def ticker_scores(engine, min_tweets):
     sql = """
@@ -29,8 +31,10 @@ def ticker_scores(engine, min_tweets):
         df = pd.read_sql(text(sql), conn, params={"min_tweets": min_tweets})
     return df
 
-def save_prediction(engine, input_text, predicted_label, confidence,
-                    model_version, tweet_id=None):
+
+def save_prediction(
+    engine, input_text, predicted_label, confidence, model_version, tweet_id=None
+):
     sql = """
         INSERT INTO predictions
             (tweet_id, input, model_version, predicted_label, confidence)
@@ -48,4 +52,3 @@ def save_prediction(engine, input_text, predicted_label, confidence,
     with engine.begin() as conn:
         result = conn.execute(text(sql), params)
         return result.scalar_one()
-

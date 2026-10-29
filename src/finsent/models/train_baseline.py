@@ -4,9 +4,8 @@ import mlflow.sklearn
 
 from finsent.config import MLFLOW_TRACKING_URI
 from finsent.data.split import RANDOM_STATE, VAL_SIZE, load_splits
-from finsent.models.baseline import build_tfidf_lr
-from finsent.models.evaluate import evaluate, plot_confusion_matrix
 from finsent.models.baseline import build_dummy, build_tfidf_lr
+from finsent.models.evaluate import evaluate, plot_confusion_matrix
 
 EXPERIMENT_NAME = "finsent-baselines"
 SIMPLE_TYPES = (str, int, float, bool, tuple, type(None))
@@ -14,9 +13,7 @@ SIMPLE_TYPES = (str, int, float, bool, tuple, type(None))
 
 def simple_params(model):
     """Keep only simple, loggable values from model.get_params()."""
-    return {
-        k: v for k, v in model.get_params().items() if isinstance(v, SIMPLE_TYPES)
-    }
+    return {k: v for k, v in model.get_params().items() if isinstance(v, SIMPLE_TYPES)}
 
 
 def train_and_log(run_name, model, train, val):
@@ -47,7 +44,7 @@ def train_and_log(run_name, model, train, val):
         plt.close(fig)
 
         # 5. Model
-        mlflow.sklearn.log_model(model, name="model")  
+        mlflow.sklearn.log_model(model, name="model")
 
         return metrics, run.info.run_id
 

@@ -1,0 +1,29 @@
+# Python environment and tool caches
+fs/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets: never bake into an image
+.env
+
+# Git / DVC
+.git/
+.dvc/
+.dvcignore
+
+# Not needed by the API
+data/
+notebook/
+tests/
+sql/
+queries/
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Big training artifacts, EXCEPT the exported serving model
+artifacts/*
+!artifacts/serving_model
